@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mi primer proyecto serio</title>
+    <!-- await espera hasta que me de un respuesta-->
+    <!-- asunc para que sea asincrona  -->
+    <script type="text/javascript">
+        async function traerpais()
+        {
+            const respuesta = await fetch("https://api.nationalize.io/pollos?name=vladimir")
+            if(respuesta.ok)
+            {
+                let oops = "404 no encontré nada";
+                alert(oops);
+                throw new Error(oops);
+            }
+            const nombre = respuesta.json();
+            return nombre;
+        }
+        
+        function mostrarNombre(n)
+        {
+            //country es el grupo de datos, el cual viene en un array
+            document.getElementById("mensaje").innerHTML = n.country[0].country_id;
+        }
+        //Cuando carge la fucion , then (entonces hará lo siguiente)
+        traerpais().then(mostrarNombre);
+        </script> 
+</head>
+<body>
+    <h1>Titulo de mi proyecto serio</h1>
+    <p>Este es un proyecto muy serio</p>
+    <P id="mensaje">Cargando...</P>
+    <Script type="text/javascript">
+        mostrarNombre ("juanito");
+
+    </Script>
+</body>
+</html>
